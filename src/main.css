@@ -1,0 +1,9 @@
+body {
+    margin: 0 auto;
+    padding: 0 20px;
+    background: red;
+}
+
+img {
+    transform: translateX(-50%);
+}
