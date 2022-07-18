@@ -32,7 +32,7 @@ const config = {
                 use: [/*'style-loader'*/MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'] // 从后向前加载的顺序
             },
             // 图片处理
-            /*{
+            {
                 test: /\.(jpeg|jpg|png|gif)/i,
                 use: [{
                     loader: 'file-loader',
@@ -40,7 +40,7 @@ const config = {
                         name: '[name][hash:8].[ext]'
                     }
                 }]
-            }*/
+            }
         ]
     },
     plugins: [
