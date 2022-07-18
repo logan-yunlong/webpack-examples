@@ -2,6 +2,7 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const {CleanWebpackPlugin} = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 // 打印当前环境变量
 console.log("当前编译执行环境变量为：" + process.env.NODE_ENV);
@@ -24,18 +25,35 @@ const config = {
     module: {
         // css 的转换规则
         rules: [
-
+            // css处理
             {
-                test: /\.css/, // 匹配所有的css文件
-                use: ['style-loader', 'css-loader', 'postcss-loader'] // 从后向前加载的顺序
-            }
+                // test: /\.css/, // 匹配所有的css文件
+                test: /\.(s[ac]|c)ss$/i, //匹配所有的 sass/scss/css 文件
+                use: [/*'style-loader'*/MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'] // 从后向前加载的顺序
+            },
+            // 图片处理
+            /*{
+                test: /\.(jpeg|jpg|png|gif)/i,
+                use: [{
+                    loader: 'file-loader',
+                    options: {
+                        name: '[name][hash:8].[ext]'
+                    }
+                }]
+            }*/
         ]
     },
     plugins: [
+        // 实现：向html文件中注入webpack产物
         new HtmlWebpackPlugin({
             template: "./public/index.html"
         }),
-        new CleanWebpackPlugin()
+        // 实现：清理打包输出目录
+        new CleanWebpackPlugin(),
+        // 实现：css 单独引入文件
+        new MiniCssExtractPlugin({
+            filename: '[name].[hash:8].css'
+        })
     ]
 }
 // 导出配置
