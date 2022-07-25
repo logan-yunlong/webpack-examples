@@ -1,6 +1,9 @@
 {
   "scripts": {
     "base-build": "npx webpack --mode development",
+    "basic:dev": "cross-env NODE_ENV=dev webpack serve --mode development --config ./examples/basic/webpack.config.js",
+    "basic:test": "cross-env NODE_ENV=test webpack serve --mode production",
+    "basic:build": "cross-env NODE_ENV=prod webpack serve --mode production",
     "dev": "cross-env NODE_ENV=dev webpack serve --mode development",
     "test": "cross-env NODE_ENV=test webpack serve --mode production",
     "build": "cross-env NODE_ENV=prod webpack serve --mode production"
